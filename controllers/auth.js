@@ -1,10 +1,9 @@
 import User from "../models/User.model.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 import { config } from "dotenv";
+import { GenSetToken } from "../utils/Gen&SetCookie.js";
 config();
-const KEY = process.env.JSON_KEY;
 
 export const signup = async (req, res) => {
   try {
@@ -24,12 +23,12 @@ export const signup = async (req, res) => {
     const newUser = new User({ email, username, password: hashedPass });
     await newUser.save();
 
-    const tokenPayload = { id: newUser._id, email: newUser.email }; 
-    const token = jwt.sign(tokenPayload, KEY, { expiresIn: "1h" });
+    const tokenPayload = { id: newUser._id, email: newUser.email };
+
+    GenSetToken(tokenPayload, res);
 
     return res.status(201).json({
       success: `User created successfully `,
-      token: token,
     });
   } catch (error) {
     console.error("Error in signup controller: ", error.message);
@@ -45,9 +44,13 @@ export const login = async (req, res) => {
     }
     const user = await User.findOne({ email });
     if (user) {
-      await bcrypt.compare(user.password);
-
-      return res.status(200).json({ error: "Logged In" });
+      const isPassword = await bcrypt.compare(user.password);
+      if (isPassword) {
+        const tokenPayload = { id: user._id, email: user.email };
+        GenSetToken(tokenPayload, res);
+        return res.status(200).json({ error: "Logged In" });
+      }
+      return res.status(501).json({ error: "Not valid cookie" });
     } else {
       return res.status(400).json({ error: "User doesn't exist" });
     }
