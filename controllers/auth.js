@@ -44,11 +44,14 @@ export const login = async (req, res) => {
     }
     const user = await User.findOne({ email });
     if (user) {
-      const isPassword = await bcrypt.compare(user.password);
+      const isPassword = await bcrypt.compare(password, user?.password);
       if (isPassword) {
+        
         const tokenPayload = { id: user._id, email: user.email };
+
         GenSetToken(tokenPayload, res);
-        return res.status(200).json({ error: "Logged In" });
+        
+        return res.status(200).json({ success: "Logged In" });
       }
       return res.status(501).json({ error: "Not valid cookie" });
     } else {
@@ -57,5 +60,17 @@ export const login = async (req, res) => {
   } catch (error) {
     console.log("Error in login controller: ", error);
     res.status(501).json({ error: "Internal server error" });
+  }
+};
+
+export const logout = (req, res) => {
+  try {
+    res.clearCookie("jwt");
+
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+   
+    console.error("Error during logout:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
