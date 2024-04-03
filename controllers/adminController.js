@@ -1,15 +1,16 @@
 import { Admin } from "../models/Admin.model.js";
-import { GenSetToken } from "../utils/Gen&SetCookie.js";
+import { adminToken } from "../utils/AdminToken.js";
 
 export const login = async (req, res) => {
   try {
+    res.clearCookie("jwt");
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({ error: "All fields are required" });
     }
     const isAdmin = await Admin.findOne({ email });
     if (isAdmin) {
-      GenSetToken({ email, password }, res);
+      adminToken({ email, password }, res);
       return res.status(200).json({ success: "Admin Logged In" });
     }
     return res.status(400).json({ error: "Invalid credentials" });
@@ -21,8 +22,7 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   try {
-    res.clearCookie("jwt");
-
+    res.clearCookie("admin");
     res.status(200).json({ message: "Logout successful" });
   } catch (error) {
     console.error("Error during logout:", error);
