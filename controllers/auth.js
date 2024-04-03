@@ -7,8 +7,8 @@ config();
 
 export const signup = async (req, res) => {
   try {
-    const { email, username, password, dob } = req.body;
-    if (!email || !username || !password || !dob) {
+    const { email, username, password, dob, rollNumber, semester } = req.body;
+    if (!email || !username || !password || !dob || !rollNumber || !semester) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
@@ -20,7 +20,14 @@ export const signup = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(password, salt);
 
-    const newUser = new User({ email, username, password: hashedPass, dob });
+    const newUser = new User({
+      email,
+      username,
+      password: hashedPass,
+      dob,
+      semester,
+      rollNumber,
+    });
     await newUser.save();
 
     const tokenPayload = { id: newUser._id, email: newUser.email };
@@ -73,46 +80,20 @@ export const logout = (req, res) => {
   }
 };
 
-// const checkUser = async (req, res, next) => {
-//   try {
-//     const { email, dob } = req.body;
-//     if (!email || !dob) {
-//       return res.status(401).json({ error: "Fields are required" });
-//     }
-//     const user = await User.findOne({ email });
-//     if (!user) {
-//       return res
-//         .status(401)
-//         .json({ error: "User didn't found which such credientials" });
-//     } else {
-//       if (dob == user.dob) {
-//         next();
-//       }
-//     }
-//   } catch (err) {
-//     console.log("Error in checkUser middleware", err.message);
-//     return res.status(501).json({ error: "Internal server error" });
-//   }
-// };
-
 export const forgot = async (req, res) => {
   try {
     const { password, confirmPassword } = req.body;
 
-    // Check if password and confirmPassword match
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "Passwords don't match" });
     }
 
-    // Check if all fields are provided
     if (!password || !confirmPassword) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Hash the new password
     const hashedPass = await bcrypt.hash(password, 10);
 
-    // Update user's password
     req.user.password = hashedPass;
     await req.user.save();
 

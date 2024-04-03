@@ -20,9 +20,17 @@ const UserSchema = new Schema({
     required: true,
   },
   dob: {
-    type: String,
+    type: Date, 
     required: true,
   },
+  rollNumber: {
+    type: String,
+    unique: true,
+  },
+  semester: {
+    type: Number,
+  },
+  isPresent: { type: Boolean, default: false },
 });
 
 const User = mongoose.model("User", UserSchema);
