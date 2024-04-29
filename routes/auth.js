@@ -68,4 +68,22 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.post("/forgot", async (req, res) => {
+  try {
+    const { username, dob, password } = req.body;
+
+    const user = await User.findOne({ username });
+
+    if (user && user.dob.toISOString().split("T")[0] === dob) {
+      await User.updateOne({ username }, { password: password });
+
+      res.send("Password updated successfully!");
+    } else {
+      res.status(400).send("Invalid username or date of birth");
+    }
+  } catch (err) {
+    console.error("Error in forgot controller:", err.message);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
 module.exports = router;

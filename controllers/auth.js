@@ -82,24 +82,40 @@ export const logout = (req, res) => {
 
 export const forgot = async (req, res) => {
   try {
-    const { password, confirmPassword } = req.body;
+    const { username, dob, password } = req.body;
 
-    if (password !== confirmPassword) {
-      return res.status(400).json({ error: "Passwords don't match" });
+    const user = await User.findOne({ username });
+
+    if (user && user.dob.toISOString().split("T")[0] === dob) {
+      await User.updateOne({ username }, { password: password });
+
+      res.send("Password updated successfully!");
+    } else {
+      res.status(400).send("Invalid username or date of birth");
     }
-
-    if (!password || !confirmPassword) {
-      return res.status(400).json({ error: "All fields are required" });
-    }
-
-    const hashedPass = await bcrypt.hash(password, 10);
-
-    req.user.password = hashedPass;
-    await req.user.save();
-
-    return res.status(200).json({ message: "Password updated successfully" });
   } catch (err) {
     console.error("Error in forgot controller:", err.message);
     return res.status(500).json({ error: "Internal server error" });
   }
+  // try {
+  //   const { password, confirmPassword } = req.body;
+
+  //   if (password !== confirmPassword) {
+  //     return res.status(400).json({ error: "Passwords don't match" });
+  //   }
+
+  //   if (!password || !confirmPassword ) {
+  //     return res.status(400).json({ error: "All fields are required" });
+  //   }
+
+  //   const hashedPass = await bcrypt.hash(password, 10);
+
+  //   req.user.password = hashedPass;
+  //   await req.user.save();
+
+  //   return res.status(200).json({ message: "Password updated successfully" });
+  // } catch (err) {
+  //   console.error("Error in forgot controller:", err.message);
+  //   return res.status(500).json({ error: "Internal server error" });
+  // }
 };

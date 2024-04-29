@@ -1,0 +1,81 @@
+*<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: #f4f4f4;
+            background-image: url("/frontend/images/class.jpg");
+            background-repeat:no-repeat ; 
+            background-size:cover;
+             }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+        }
+        h1 {
+            text-align: center;
+        }
+        .semester-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;    
+        background-color: black;
+        }
+        .button:hover {
+            background-color: green;
+        }
+        h1 {
+            color:chocolate;
+        }
+        h5  {
+            color: green;
+        }
+        h2 {
+            background-position: center;
+            color: black;
+        }
+        h4 {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+         <h5>Welcome to Dashboard</h5>
+         <h4><a href="/frontend/login/faculty.html">Logout</a></h4>
+        <h1>GOVERNMENT DEGREE COLLEGE GANDERBAL</h1>
+        <marquee behavior="" direction="">
+
+            <h2 style="color:gold">Welcome to Attendance Manager</h2>
+        </marquee>
+           <div class="semester-buttons">
+            <button id="sem1" class="button"><a href="sem 1.html">Semester 1</a></button>
+            <button id="sem2" class="button"><a href="sem2.html">Semester 2</a></button>
+            <button id="sem3" class="button"><a href="sem3.html" >Semester 3</a></button>
+            <button id="sem4" class="button"><a href="sem4.html" >Semester 4</a></button>
+            <button id="sem5" class="button"><a href="sem5.html">Semester 5</a></button>
+            <button id="sem6" class="button"><a href="sem6.html">Semester 6</a></button>
+        </div>
+    </div>
+</body>
+</html>

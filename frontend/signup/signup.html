@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                margin: 0;
+                padding: 0;
+                background: url('/frontend/images/signup.jpg');
+                background-size: cover;
+                height: 100vh;
+                width: 100vw;
+            }
+
+            .container {
+                width: 700px;
+                margin: 50px auto;
+
+                padding: 20px;
+
+
+            }
+
+            h2 {
+                text-align: center;
+                color: #007bff;
+            }
+
+            h6 {
+                text-align: center;
+                color: #007bff;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            input[type="text"],
+            input[type="number"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            input[type="submit"]:hover {
+                background-color: green;
+            }
+
+            .home-link {
+                text-align: center;
+            }
+
+            .captcha {
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .login-form {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h2>Sign Up</h2>
+            <h6> Only for Students</h6>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name"> Email:</label>
+                    <input type="text" id="email" name="email" maxlength="25">
+                </div>
+                <div class="form-group">
+                    <label for="name"> Username:</label>
+                    <input type="text" id="name" name="name" maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="roll">Roll Number:</label>
+                    <input type="number" id="number" name="number" maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="name"> D.O.B:</label>
+                    <input type="number" id="dob" name="dob" maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester:</label>
+                    <input type="number" id="semester" name="semester" minlength="1" maxlength="2" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="text" id="password" name="password" maxlength="15" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Sign Up" id="Sign">
+                    <div class="login-form">
+                        Already an account? <a href="/frontend/login/login.html">Login</a>
+                    </div>
+                </div>
+            </form>
+
+            <div class="home-link">
+                <a href="/frontend/home/index.html"> Home Page</a>
+            </div>
+            <script>
+                const sign = document.getElementById("Sign")
+
+                sign.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+                    const semester = document.getElementById("semester").value
+                    const dob = document.getElementById("dob").value
+                    const email = document.getElementById("email").value
+                    const rollnumber = document.getElementById("number").value
+                    const username = document.getElementById("name").value
+                    const password = document.getElementById("password").value
+
+                    if (!username || !dob || !email || !rollnumber || !sem || !password) {
+                        alert("Please fill in all fields")
+                        return false;
+                    } else {
+                        window.location.href = "/login/login.html"; s
+                        return true;
+                    }
+
+                    fetch("http://localhost:3000/auth/signup", {
+                        method: "POST",
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        body: JSON.stringify(PostData)
+                    }).then(res => {
+                        if (!res.ok) {
+                            throw new Error("Error in signup FE")
+
+                        }
+                        return res.json();
+                    }).then(data => console.log(data)).catch(err => console.log("Error: ", err))
+                })
+            </script>
+    </body>
+
+</html>

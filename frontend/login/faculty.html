@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Manager</title>
+  <style>
+    *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      background-image: url('/frontend/images/facu\ log.jpg');
+      background-size: cover;
+      height: 100vh;
+      width: 100vw;
+       }
+
+       .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 8px;
+      
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: calc(100% - 20px);
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: green ;
+    }
+
+    .signup-link {
+      text-align: center;
+    }
+
+    .signup-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+    .forget-link  {
+      text-align: center;
+    }
+    h5 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Faculty Login</h1>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="text" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      
+      <button type="submit">Login</button>
+        <h5><a href="/frontend/home/index.html">Return to Home</a></h5>
+      
+
+      <script>
+      if (username === "username" && password === "password") {
+        window.location.href = "admin.html";
+            } else {
+                alert("Incorrect username or password. Please try again.");
+            } 
+        </script>    
+        </form>
+    </div>
+    <script>
+      const email = document.getElementById("email")
+            const password = document.getElementById("password")
+    </script>
+</body>
+</html>

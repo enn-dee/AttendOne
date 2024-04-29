@@ -9,8 +9,8 @@ const route = express.Router();
 route.post("/signup", signup);
 route.post("/login", login);
 route.get("/logout", logout);
-
-route.get("/forgot", checkUser, forgot);
+route.post("/forgot", forgot);
+// route.get("/forgot", checkUser, forgot);
 
 route.get("/semester/:id", getUsersBySemester);
 route.post("/mark", modifyAttendance);

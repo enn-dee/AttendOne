@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Manager</title>
+  <style>
+    *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('/frontend/images/students.jpg');
+      background-size: cover;
+      height: 100vh;
+      width: 100vw;
+      
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 8px;
+     
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: calc(100% - 20px);
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: blueviolet;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color:green;
+    }
+
+    .signup-link {
+      text-align: center;
+    }
+
+    .signup-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+    .forget-link  {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Login</h1>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="user" name="user" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      
+      <button type="submit">Login</button>
+      
+     <!-- <script>
+      if (username === "username" && password === "password") {
+        window.location.href = "student.html";
+            } else {
+                alert("Incorrect username or password. Please try again.");
+            }
+         </script>  -->
+      <div class="forget-link"><a href="/frontend/forgot/forget.html">Forget Password</a>
+    </form>
+    </div>
+    
+    <div class="signup-link">
+      Don't have an account? <a href="/frontend/signup/signup.html">Sign Up</a>
+       <div class="Return-link">
+         <a href="/frontend/home/index.html">Home Page</a>
+         <script>
+          const username = document.getElementById("user")
+            const pass = document.getElementById("password")
+         </script>
+</body>
+</html>
