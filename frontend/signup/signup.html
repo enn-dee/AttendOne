@@ -117,7 +117,7 @@
                 </div>
                 <div class="form-group">
                     <label for="name"> D.O.B:</label>
-                    <input type="number" id="dob" name="dob" maxlength="10" required>
+                    <input type="date" id="dob" name="dob" maxlength="10" required>
                 </div>
                 <div class="form-group">
                     <label for="semester">Semester:</label>
@@ -148,19 +148,28 @@
                     const semester = document.getElementById("semester").value
                     const dob = document.getElementById("dob").value
                     const email = document.getElementById("email").value
-                    const rollnumber = document.getElementById("number").value
+                    const rollNumber = document.getElementById("number").value
                     const username = document.getElementById("name").value
                     const password = document.getElementById("password").value
 
-                    if (!username || !dob || !email || !rollnumber || !sem || !password) {
+                    if (!username || !dob || !email || !rollNumber || !semester || !password) {
                         alert("Please fill in all fields")
                         return false;
-                    } else {
-                        window.location.href = "/login/login.html"; s
-                        return true;
                     }
+                    // else {
+                    //     window.location.href = "/login/login.html"; s
+                    //     return true;
+                    // }
 
-                    fetch("http://localhost:3000/auth/signup", {
+                    const PostData = {
+                        email: email,
+                        username: username,
+                        password: password,
+                        dob: dob,
+                        rollNumber: rollNumber,
+                        semester: semester
+                    }
+                    fetch("http://127.0.0.1:3000/auth/signup", {
                         method: "POST",
                         headers: {
                             'Content-type': 'application/json'

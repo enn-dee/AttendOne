@@ -3,8 +3,10 @@ import { forgot, login, logout, signup } from "../controllers/auth.js";
 import { checkUser } from "../middleware/CheckUser.js";
 import { getUsersBySemester } from "../controllers/getUsersBySemester.js";
 import { modifyAttendance } from "../controllers/Attendance.js";
-
+import cors from "cors";
 const route = express.Router();
+
+route.use(cors());
 
 route.post("/signup", signup);
 route.post("/login", login);
