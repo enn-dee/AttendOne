@@ -1,129 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attendance Manager</title>
-  <style>
-    *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-image: url('/frontend/images/students.jpg');
-      background-size: cover;
-      height: 100vh;
-      width: 100vw;
-      
-    }
 
-    .container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      border-radius: 8px;
-     
-    }
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Manager</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #333;
-    }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('/frontend/images/students.jpg');
+        background-size: cover;
+        height: 100vh;
+        width: 100vw;
 
-    form {
-      margin-bottom: 20px;
-    }
+      }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+      }
 
-    input[type="text"],
-    input[type="password"],
-    select {
-      width: calc(100% - 20px);
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+      }
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: blueviolet;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+      form {
+        margin-bottom: 20px;
+      }
 
-    button:hover {
-      background-color:green;
-    }
+      .form-group {
+        margin-bottom: 20px;
+      }
 
-    .signup-link {
-      text-align: center;
-    }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
 
-    .signup-link a {
-      color: #007bff;
-      text-decoration: none;
-    }
+      input[type="text"],
+      input[type="password"],
+      select {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
 
-    .signup-link a:hover {
-      text-decoration: underline;
-    }
-    .forget-link  {
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Student Login</h1>
-    <form id="login-form">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="user" name="user" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      
-      <button type="submit">Login</button>
-      
-     <!-- <script>
-      if (username === "username" && password === "password") {
-        window.location.href = "student.html";
-            } else {
-                alert("Incorrect username or password. Please try again.");
-            }
-         </script>  -->
-      <div class="forget-link"><a href="/frontend/forgot/forget.html">Forget Password</a>
-    </form>
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: blueviolet;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: green;
+      }
+
+      .signup-link {
+        text-align: center;
+      }
+
+      .signup-link a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .signup-link a:hover {
+        text-decoration: underline;
+      }
+
+      .forget-link {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Student Login</h1>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="user" name="user" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit" id="login-btn">Login</button>
+
+
+        <div class="forget-link"><a href="/frontend/forgot/forget.html">Forget Password</a>
+      </form>
     </div>
-    
+
     <div class="signup-link">
       Don't have an account? <a href="/frontend/signup/signup.html">Sign Up</a>
-       <div class="Return-link">
-         <a href="/frontend/home/index.html">Home Page</a>
-         <script>
-          const username = document.getElementById("user")
-            const pass = document.getElementById("password")
-         </script>
-</body>
+      <div class="Return-link">
+        <a href="/frontend/home/index.html">Home Page</a>
+        <script>
+
+          document.getElementById("login-btn").addEventListener("click", (e) => {
+            e.preventDefault();
+            try {
+              let username = document.getElementById("user")
+              let password = document.getElementById("password")
+              username = username.value;
+              password = password.value
+              if (!username || !password) {
+                alert("All fields are required")
+              }
+              else {
+                const PostData = {
+                  username: username,
+                  password: password
+                }
+                fetch("http://127.0.0.1:3000/auth/login", {
+                  method: "POST",
+                  headers: {
+                    'Content-type': 'application/json'
+                  },
+                  body: JSON.stringify(PostData)
+                }).then(res => {
+                  if (!res.ok) {
+                    throw new Error("Error in signup FE")
+                  }
+                  return res.json();
+                }).then(data => {
+                  const token = data.token;
+                  localStorage.setItem("token", token)
+                }
+                ).catch(err => console.log("Error: ", err))
+              }
+
+            } catch (err) {
+              alert(err.message)
+              console.log("Error in FE login")
+            }
+          })
+        </script>
+  </body>
+
 </html>

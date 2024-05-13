@@ -8,7 +8,7 @@ require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
 router.post("/signup", async (req, res) => {
   try {
-    const { username, password, role, semester } = req.body;
+    const { email, username, password, dob, rollNumber, semester, role} = req.body;
 
     let existingUser = await User.findOne({ username });
 
@@ -19,10 +19,13 @@ router.post("/signup", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
+      email,
       username,
       password: hashedPassword,
-      role,
+      dob,
+      rollNumber,
       semester,
+      role
     });
 
     await newUser.save();

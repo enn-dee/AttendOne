@@ -156,10 +156,7 @@
                         alert("Please fill in all fields")
                         return false;
                     }
-                    // else {
-                    //     window.location.href = "/login/login.html"; s
-                    //     return true;
-                    // }
+
 
                     const PostData = {
                         email: email,
@@ -167,7 +164,8 @@
                         password: password,
                         dob: dob,
                         rollNumber: rollNumber,
-                        semester: semester
+                        semester: semester,
+                        role: "student"
                     }
                     fetch("http://127.0.0.1:3000/auth/signup", {
                         method: "POST",
@@ -178,10 +176,12 @@
                     }).then(res => {
                         if (!res.ok) {
                             throw new Error("Error in signup FE")
-
                         }
                         return res.json();
-                    }).then(data => console.log(data)).catch(err => console.log("Error: ", err))
+                    }).then(data => {
+                        alert("User created")
+                        window.location.href = "../login/login.html"
+                    }).catch(err => console.log("Error: ", err))
                 })
             </script>
     </body>
